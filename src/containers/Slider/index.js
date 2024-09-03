@@ -12,7 +12,7 @@ const Slider = () => {
   );
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+      () => setIndex(index < (byDateDesc?.length ?? 0) - 1 ? index + 1 : 0), // Ceci fait en sorte que l'index ne dépasse pas la dernière slide valide
       5000
     );
   };
@@ -45,7 +45,7 @@ const Slider = () => {
                   key={`${event.id}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+                  checked={index === radioIdx} // Changement de 'idx' par index qui empèche les bullet points de s'actualiser
                 />
               ))}
             </div>
