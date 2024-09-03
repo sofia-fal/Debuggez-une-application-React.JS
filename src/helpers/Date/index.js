@@ -13,4 +13,4 @@ export const MONTHS = {
   12: "décembre",
 };
 
-export const getMonth = (date) => MONTHS[date.getMonth()];
+export const getMonth = (date) => MONTHS[date.getMonth() + 1]; // Ici, '+ 1' est rajouté pour corriger l'écart entre la méthode getMonth et l'objet 'MONTHS' basé sur l'index 1
