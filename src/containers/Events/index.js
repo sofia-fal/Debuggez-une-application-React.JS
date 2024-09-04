@@ -14,17 +14,16 @@ const EventList = () => {
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const filteredEvents = (
+    // Si aucun type n'est sélectionné, on affiche tous les événements
     (!type
       ? data?.events
-      : data?.events) || []
+      // Sinon, on filtre les événements en fonction du type sélectionné
+      : data?.events.filter(event => event.type === type)) || []
   ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
-    return false;
+    // Filtrage pour la pagination : on ne garde que les événements de la page courante
+    const startIndex = (currentPage - 1) * PER_PAGE;
+    const endIndex = PER_PAGE * currentPage;
+    return index >= startIndex && index < endIndex;
   });
   const changeType = (evtType) => {
     setCurrentPage(1);
@@ -42,7 +41,7 @@ const EventList = () => {
           <h3 className="SelectTitle">Catégories</h3>
           <Select
             selection={Array.from(typeList)}
-            onChange={(value) => (value ? changeType(value) : changeType(null))}
+            onChange={changeType}  // Pas besoin de logique conditionnelle ici
           />
           <div id="events" className="ListContainer">
             {filteredEvents.map((event) => (
