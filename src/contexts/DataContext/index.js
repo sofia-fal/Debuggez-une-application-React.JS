@@ -29,7 +29,7 @@ export const DataProvider = ({ children }) => {
       // Si des événements sont présents, on trie par date et on sélectionne le plus récent
       if (eventsData && eventsData.events && eventsData.events.length > 0) {
         const sortedEvents = eventsData.events.sort((a, b) => new Date(b.date) - new Date(a.date));
-        setLast(sortedEvents[0]); // Définir `last` comme le dernier événement
+        setLast(sortedEvents[0]); // Définir 'last' comme le dernier événement
       }
     } catch (err) {
       setError(err);

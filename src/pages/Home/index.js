@@ -23,7 +23,7 @@ const Page = () => {
       <section className="SliderContainer">
         <Slider />
       </section>
-      <section className="ServicesContainer">
+      <section id="nos-services">
         <h2 className="Title">Nos services</h2>
         <p>Nous organisons des événements sur mesure partout dans le monde</p>
         <div className="ListContainer">
@@ -52,11 +52,11 @@ const Page = () => {
           </ServiceCard>
         </div>
       </section>
-      <section className="EventsContainer">
+      <section id="nos-realisations">
         <h2 className="Title">Nos réalisations</h2>
         <EventList />
       </section>
-      <section className="PeoplesContainer">
+      <section id="notre-equipe">
         <h2 className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
         <div className="ListContainer">
@@ -117,6 +117,7 @@ const Page = () => {
     <footer className="row">
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
+        { last &&
         <EventCard
           imageSrc={last?.cover}
           title={last?.title}
@@ -124,6 +125,7 @@ const Page = () => {
           small
           label={last?.type}
         />
+}
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
