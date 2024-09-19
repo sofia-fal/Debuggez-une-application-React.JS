@@ -7,23 +7,27 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
+
+  // Trier par ordre décroissant
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+    new Date(evtA.date) > new Date(evtB.date) ? -1 : 1
   );
+
   const nextCard = () => {
     setTimeout(
       () => setIndex(index < (byDateDesc?.length ?? 0) - 1 ? index + 1 : 0), // Ceci fait en sorte que l'index ne dépasse pas la dernière slide valide
       5000
     );
   };
+
   useEffect(() => {
     nextCard();
-  });
+  }, [index]); // Ne pas oublier d'ajouter l'index comme dépendance pour que l'effet se relance correctement
+
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <div
-        key={event.title}>
+        <div key={event.title}>
           <div
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
